@@ -3,13 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "node server.js"
+    "test": "npm test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "jsdom": "^16.5.3",
+    "msnodesqlv8": "^2.0.13",
     "mssql": "^6.3.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nokukhanyasidu/databaseButton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nokukhanyasidu/databaseButton/issues"
+  },
+  "homepage": "https://github.com/nokukhanyasidu/databaseButton#readme"
 }

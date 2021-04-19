@@ -1,32 +1,66 @@
-
-var button = document.getElementById('btn');
-
-button.onclick = function(){
-const express = require('express'); 
-const app = express();
-const mssql = require('mssql');
-
-app.get('/', function(req, res){
-
-const config = {
-    user: "kevroAD\Nokukhanya.Sidu",
-    password: '',
-    server: "localhost",
-    database: "infinity customers"
-};
+import express from "express";
+import pkg from 'mssql';
+import sql from 'mssql/msnodesqlv8.js'
 
 
-    mssql.connect(config, function(err){
-        var request = new mssql.Request();
-        request.query('select * from customers' ,function(err, records) {
-            if (err) console.log(err)
-            re.send(records);
-        });
-    }); 
-    var server = app.listen(3000, function(){
-        console.log("server is listening to 3000...");
+
+
+const { connect, Request } = pkg;
+const pool = new sql.ConnectionPool({
+    database: 'infinity customers',
+    server : 'localhost',
+    driver : 'msnodesqlv8',
+    options : {
+        trustedConnection : true
+    }
+})
+pool.connect().then(() => {
+    let queryString = "select * from customers";
+    pool.request().query(queryString, (err, result) => {
+        if(err)
+        console.log(err)
+        else
+        console.dir(result)
     })
+})
 
+  
+   const config = {
+         user: "kevroAD\Nokukhanya.Sidu",
+         password: 'tyo41YGE',
+         server: 'SQLEXPRESS.database.windows.net',
+         port : 1433,
+         database: "infinity customers",
+       options : {
+           encrypt: true
+       }
+     }
+     let conn = new sql.ConnectionPool(config);
+     conn.connect()
+     .then(function () {
+         let req = new sql.Request(conn);
+         req.query('select 1 as number')
+         .then(function(recordset) {
+             console.dir(recordset);
+             conn.close();
+         })
+         .catch(function (err) {
+             console.log(err);
+             conn.close();
+         })
+     })
+     .catch(function (err){
+         console.log(err);
+         conn.close();
+     });
+    
+    
+var app = express();
+var server = app.listen(8080, function(){
+    var port = server.address().port;
 
-});
-};
+console.log("app now running on port", port);
+console.log(server)
+})
+
+ 
