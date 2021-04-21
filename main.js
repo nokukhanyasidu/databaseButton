@@ -1,9 +1,9 @@
-import express from "express";
-import pkg from 'mssql';
-import sql from 'mssql/msnodesqlv8.js'
+import express from "./node_modules/express";
+import pkg from './node_modules/mssql';
+import sql from './node_modules/msnodesqlv8'
+var app = express();
 
-
-
+app.get('/', function (req, res){
 
 const { connect, Request } = pkg;
 const pool = new sql.ConnectionPool({
@@ -54,12 +54,10 @@ pool.connect().then(() => {
          conn.close();
      });
     
-    
-var app = express();
-var server = app.listen(8080, function(){
-    var port = server.address().port;
+    });    
 
-console.log("app now running on port", port);
+var server = app.listen(8080, function(){
+console.log("app now running on port 8080");
 console.log(server)
 })
 
