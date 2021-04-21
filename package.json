@@ -15,7 +15,9 @@
     "msnodesqlv8": "^2.0.13",
     "mssql": "^6.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nokukhanyasidu/databaseButton.git"
