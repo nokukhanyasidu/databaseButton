@@ -1,6 +1,6 @@
-import express from "express";
-import pkg from 'mssql';
-import sql from 'mssql/msnodesqlv8.js'
+import express from "./express";
+import pkg from './mssql';
+import sql from './mssql/msnodesqlv8.js'
 var app = express();
 
 app.get('/', function (req, res){
